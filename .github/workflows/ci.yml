@@ -24,4 +24,4 @@ jobs:
           curl -f http://localhost/api/dns/google.com
           curl -f http://localhost/api/dnssec/cloudflare.com
           curl -f http://localhost/api/compare/google.com
-          curl -f http://localhost/health
+          curl -f http://localhost/api/health
