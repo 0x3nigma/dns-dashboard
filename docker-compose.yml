@@ -1,0 +1,32 @@
+services:
+  argus-service:
+    build: ./argus_service
+    networks:
+      - dns-network
+
+  backend:
+    build: ./backend
+    networks:
+      - dns-network
+    depends_on:
+      - argus-service
+
+  frontend:
+    build: ./frontend
+    networks:
+      - dns-network
+    depends_on:
+      - backend
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - dns-network
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+
+networks:
+  dns-network:
